@@ -1,4 +1,4 @@
-package com.playtika.springframework.remoting.protobuf;
+package com.playtika.springframework.remoting.protobuf.http;
 
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.factory.FactoryBean;

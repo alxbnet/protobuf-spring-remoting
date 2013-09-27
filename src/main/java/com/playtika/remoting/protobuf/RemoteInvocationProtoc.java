@@ -26,19 +26,30 @@ public final class RemoteInvocationProtoc {
     com.google.protobuf.ByteString
         getMethodBytes();
 
-    // repeated bytes arguments = 2;
+    // repeated .protobuf.MessageWrapper argument = 2;
     /**
-     * <code>repeated bytes arguments = 2;</code>
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
      */
-    java.util.List<com.google.protobuf.ByteString> getArgumentsList();
+    java.util.List<com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper> 
+        getArgumentList();
     /**
-     * <code>repeated bytes arguments = 2;</code>
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
      */
-    int getArgumentsCount();
+    com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper getArgument(int index);
     /**
-     * <code>repeated bytes arguments = 2;</code>
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
      */
-    com.google.protobuf.ByteString getArguments(int index);
+    int getArgumentCount();
+    /**
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+     */
+    java.util.List<? extends com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder> 
+        getArgumentOrBuilderList();
+    /**
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+     */
+    com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder getArgumentOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code protobuf.RemoteInvocation}
@@ -98,10 +109,10 @@ public final class RemoteInvocationProtoc {
             }
             case 18: {
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                arguments_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                argument_ = new java.util.ArrayList<com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper>();
                 mutable_bitField0_ |= 0x00000002;
               }
-              arguments_.add(input.readBytes());
+              argument_.add(input.readMessage(com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.PARSER, extensionRegistry));
               break;
             }
           }
@@ -113,7 +124,7 @@ public final class RemoteInvocationProtoc {
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          arguments_ = java.util.Collections.unmodifiableList(arguments_);
+          argument_ = java.util.Collections.unmodifiableList(argument_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -190,32 +201,45 @@ public final class RemoteInvocationProtoc {
       }
     }
 
-    // repeated bytes arguments = 2;
-    public static final int ARGUMENTS_FIELD_NUMBER = 2;
-    private java.util.List<com.google.protobuf.ByteString> arguments_;
+    // repeated .protobuf.MessageWrapper argument = 2;
+    public static final int ARGUMENT_FIELD_NUMBER = 2;
+    private java.util.List<com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper> argument_;
     /**
-     * <code>repeated bytes arguments = 2;</code>
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
      */
-    public java.util.List<com.google.protobuf.ByteString>
-        getArgumentsList() {
-      return arguments_;
+    public java.util.List<com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper> getArgumentList() {
+      return argument_;
     }
     /**
-     * <code>repeated bytes arguments = 2;</code>
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
      */
-    public int getArgumentsCount() {
-      return arguments_.size();
+    public java.util.List<? extends com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder> 
+        getArgumentOrBuilderList() {
+      return argument_;
     }
     /**
-     * <code>repeated bytes arguments = 2;</code>
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
      */
-    public com.google.protobuf.ByteString getArguments(int index) {
-      return arguments_.get(index);
+    public int getArgumentCount() {
+      return argument_.size();
+    }
+    /**
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+     */
+    public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper getArgument(int index) {
+      return argument_.get(index);
+    }
+    /**
+     * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+     */
+    public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder getArgumentOrBuilder(
+        int index) {
+      return argument_.get(index);
     }
 
     private void initFields() {
       method_ = "";
-      arguments_ = java.util.Collections.emptyList();
+      argument_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -236,8 +260,8 @@ public final class RemoteInvocationProtoc {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeBytes(1, getMethodBytes());
       }
-      for (int i = 0; i < arguments_.size(); i++) {
-        output.writeBytes(2, arguments_.get(i));
+      for (int i = 0; i < argument_.size(); i++) {
+        output.writeMessage(2, argument_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -252,14 +276,9 @@ public final class RemoteInvocationProtoc {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, getMethodBytes());
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < arguments_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(arguments_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getArgumentsList().size();
+      for (int i = 0; i < argument_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, argument_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -369,6 +388,7 @@ public final class RemoteInvocationProtoc {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getArgumentFieldBuilder();
         }
       }
       private static Builder create() {
@@ -379,8 +399,12 @@ public final class RemoteInvocationProtoc {
         super.clear();
         method_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        arguments_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        if (argumentBuilder_ == null) {
+          argument_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          argumentBuilder_.clear();
+        }
         return this;
       }
 
@@ -413,11 +437,15 @@ public final class RemoteInvocationProtoc {
           to_bitField0_ |= 0x00000001;
         }
         result.method_ = method_;
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          arguments_ = java.util.Collections.unmodifiableList(arguments_);
-          bitField0_ = (bitField0_ & ~0x00000002);
+        if (argumentBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            argument_ = java.util.Collections.unmodifiableList(argument_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.argument_ = argument_;
+        } else {
+          result.argument_ = argumentBuilder_.build();
         }
-        result.arguments_ = arguments_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -439,15 +467,31 @@ public final class RemoteInvocationProtoc {
           method_ = other.method_;
           onChanged();
         }
-        if (!other.arguments_.isEmpty()) {
-          if (arguments_.isEmpty()) {
-            arguments_ = other.arguments_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensureArgumentsIsMutable();
-            arguments_.addAll(other.arguments_);
+        if (argumentBuilder_ == null) {
+          if (!other.argument_.isEmpty()) {
+            if (argument_.isEmpty()) {
+              argument_ = other.argument_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureArgumentIsMutable();
+              argument_.addAll(other.argument_);
+            }
+            onChanged();
           }
-          onChanged();
+        } else {
+          if (!other.argument_.isEmpty()) {
+            if (argumentBuilder_.isEmpty()) {
+              argumentBuilder_.dispose();
+              argumentBuilder_ = null;
+              argument_ = other.argument_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              argumentBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getArgumentFieldBuilder() : null;
+            } else {
+              argumentBuilder_.addAllMessages(other.argument_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -554,76 +598,244 @@ public final class RemoteInvocationProtoc {
         return this;
       }
 
-      // repeated bytes arguments = 2;
-      private java.util.List<com.google.protobuf.ByteString> arguments_ = java.util.Collections.emptyList();
-      private void ensureArgumentsIsMutable() {
+      // repeated .protobuf.MessageWrapper argument = 2;
+      private java.util.List<com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper> argument_ =
+        java.util.Collections.emptyList();
+      private void ensureArgumentIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          arguments_ = new java.util.ArrayList<com.google.protobuf.ByteString>(arguments_);
+          argument_ = new java.util.ArrayList<com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper>(argument_);
           bitField0_ |= 0x00000002;
          }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder> argumentBuilder_;
+
       /**
-       * <code>repeated bytes arguments = 2;</code>
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
        */
-      public java.util.List<com.google.protobuf.ByteString>
-          getArgumentsList() {
-        return java.util.Collections.unmodifiableList(arguments_);
+      public java.util.List<com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper> getArgumentList() {
+        if (argumentBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(argument_);
+        } else {
+          return argumentBuilder_.getMessageList();
+        }
       }
       /**
-       * <code>repeated bytes arguments = 2;</code>
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
        */
-      public int getArgumentsCount() {
-        return arguments_.size();
+      public int getArgumentCount() {
+        if (argumentBuilder_ == null) {
+          return argument_.size();
+        } else {
+          return argumentBuilder_.getCount();
+        }
       }
       /**
-       * <code>repeated bytes arguments = 2;</code>
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
        */
-      public com.google.protobuf.ByteString getArguments(int index) {
-        return arguments_.get(index);
+      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper getArgument(int index) {
+        if (argumentBuilder_ == null) {
+          return argument_.get(index);
+        } else {
+          return argumentBuilder_.getMessage(index);
+        }
       }
       /**
-       * <code>repeated bytes arguments = 2;</code>
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
        */
-      public Builder setArguments(
-          int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureArgumentsIsMutable();
-        arguments_.set(index, value);
-        onChanged();
+      public Builder setArgument(
+          int index, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper value) {
+        if (argumentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureArgumentIsMutable();
+          argument_.set(index, value);
+          onChanged();
+        } else {
+          argumentBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>repeated bytes arguments = 2;</code>
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
        */
-      public Builder addArguments(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureArgumentsIsMutable();
-        arguments_.add(value);
-        onChanged();
+      public Builder setArgument(
+          int index, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder builderForValue) {
+        if (argumentBuilder_ == null) {
+          ensureArgumentIsMutable();
+          argument_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          argumentBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>repeated bytes arguments = 2;</code>
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
        */
-      public Builder addAllArguments(
-          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        ensureArgumentsIsMutable();
-        super.addAll(values, arguments_);
-        onChanged();
+      public Builder addArgument(com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper value) {
+        if (argumentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureArgumentIsMutable();
+          argument_.add(value);
+          onChanged();
+        } else {
+          argumentBuilder_.addMessage(value);
+        }
         return this;
       }
       /**
-       * <code>repeated bytes arguments = 2;</code>
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
        */
-      public Builder clearArguments() {
-        arguments_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
+      public Builder addArgument(
+          int index, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper value) {
+        if (argumentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureArgumentIsMutable();
+          argument_.add(index, value);
+          onChanged();
+        } else {
+          argumentBuilder_.addMessage(index, value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public Builder addArgument(
+          com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder builderForValue) {
+        if (argumentBuilder_ == null) {
+          ensureArgumentIsMutable();
+          argument_.add(builderForValue.build());
+          onChanged();
+        } else {
+          argumentBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public Builder addArgument(
+          int index, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder builderForValue) {
+        if (argumentBuilder_ == null) {
+          ensureArgumentIsMutable();
+          argument_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          argumentBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public Builder addAllArgument(
+          java.lang.Iterable<? extends com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper> values) {
+        if (argumentBuilder_ == null) {
+          ensureArgumentIsMutable();
+          super.addAll(values, argument_);
+          onChanged();
+        } else {
+          argumentBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public Builder clearArgument() {
+        if (argumentBuilder_ == null) {
+          argument_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          argumentBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public Builder removeArgument(int index) {
+        if (argumentBuilder_ == null) {
+          ensureArgumentIsMutable();
+          argument_.remove(index);
+          onChanged();
+        } else {
+          argumentBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder getArgumentBuilder(
+          int index) {
+        return getArgumentFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder getArgumentOrBuilder(
+          int index) {
+        if (argumentBuilder_ == null) {
+          return argument_.get(index);  } else {
+          return argumentBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public java.util.List<? extends com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder> 
+           getArgumentOrBuilderList() {
+        if (argumentBuilder_ != null) {
+          return argumentBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(argument_);
+        }
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder addArgumentBuilder() {
+        return getArgumentFieldBuilder().addBuilder(
+            com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder addArgumentBuilder(
+          int index) {
+        return getArgumentFieldBuilder().addBuilder(
+            index, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protobuf.MessageWrapper argument = 2;</code>
+       */
+      public java.util.List<com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder> 
+           getArgumentBuilderList() {
+        return getArgumentFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder> 
+          getArgumentFieldBuilder() {
+        if (argumentBuilder_ == null) {
+          argumentBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder>(
+                  argument_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          argument_ = null;
+        }
+        return argumentBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:protobuf.RemoteInvocation)
@@ -637,7 +849,7 @@ public final class RemoteInvocationProtoc {
     // @@protoc_insertion_point(class_scope:protobuf.RemoteInvocation)
   }
 
-  public interface InvocationResultOrBuilder
+  public interface MessageWrapperOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
     // optional string class_name = 1;
@@ -666,24 +878,24 @@ public final class RemoteInvocationProtoc {
     com.google.protobuf.ByteString getData();
   }
   /**
-   * Protobuf type {@code protobuf.InvocationResult}
+   * Protobuf type {@code protobuf.MessageWrapper}
    */
-  public static final class InvocationResult extends
+  public static final class MessageWrapper extends
       com.google.protobuf.GeneratedMessage
-      implements InvocationResultOrBuilder {
-    // Use InvocationResult.newBuilder() to construct.
-    private InvocationResult(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      implements MessageWrapperOrBuilder {
+    // Use MessageWrapper.newBuilder() to construct.
+    private MessageWrapper(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private InvocationResult(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private MessageWrapper(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final InvocationResult defaultInstance;
-    public static InvocationResult getDefaultInstance() {
+    private static final MessageWrapper defaultInstance;
+    public static MessageWrapper getDefaultInstance() {
       return defaultInstance;
     }
 
-    public InvocationResult getDefaultInstanceForType() {
+    public MessageWrapper getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -693,7 +905,7 @@ public final class RemoteInvocationProtoc {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private InvocationResult(
+    private MessageWrapper(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -740,28 +952,28 @@ public final class RemoteInvocationProtoc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_InvocationResult_descriptor;
+      return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_MessageWrapper_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_InvocationResult_fieldAccessorTable
+      return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_MessageWrapper_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult.class, com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult.Builder.class);
+              com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.class, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<InvocationResult> PARSER =
-        new com.google.protobuf.AbstractParser<InvocationResult>() {
-      public InvocationResult parsePartialFrom(
+    public static com.google.protobuf.Parser<MessageWrapper> PARSER =
+        new com.google.protobuf.AbstractParser<MessageWrapper>() {
+      public MessageWrapper parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new InvocationResult(input, extensionRegistry);
+        return new MessageWrapper(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<InvocationResult> getParserForType() {
+    public com.google.protobuf.Parser<MessageWrapper> getParserForType() {
       return PARSER;
     }
 
@@ -876,53 +1088,53 @@ public final class RemoteInvocationProtoc {
       return super.writeReplace();
     }
 
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseFrom(
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseFrom(
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseFrom(byte[] data)
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseFrom(
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseFrom(java.io.InputStream input)
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseFrom(
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseDelimitedFrom(java.io.InputStream input)
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseDelimitedFrom(
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseFrom(
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parseFrom(
+    public static com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -931,7 +1143,7 @@ public final class RemoteInvocationProtoc {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult prototype) {
+    public static Builder newBuilder(com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -943,24 +1155,24 @@ public final class RemoteInvocationProtoc {
       return builder;
     }
     /**
-     * Protobuf type {@code protobuf.InvocationResult}
+     * Protobuf type {@code protobuf.MessageWrapper}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResultOrBuilder {
+       implements com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapperOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_InvocationResult_descriptor;
+        return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_MessageWrapper_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_InvocationResult_fieldAccessorTable
+        return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_MessageWrapper_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult.class, com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult.Builder.class);
+                com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.class, com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.Builder.class);
       }
 
-      // Construct using com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult.newBuilder()
+      // Construct using com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -993,23 +1205,23 @@ public final class RemoteInvocationProtoc {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_InvocationResult_descriptor;
+        return com.playtika.remoting.protobuf.RemoteInvocationProtoc.internal_static_protobuf_MessageWrapper_descriptor;
       }
 
-      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult getDefaultInstanceForType() {
-        return com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult.getDefaultInstance();
+      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper getDefaultInstanceForType() {
+        return com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.getDefaultInstance();
       }
 
-      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult build() {
-        com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult result = buildPartial();
+      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper build() {
+        com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult buildPartial() {
-        com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult result = new com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult(this);
+      public com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper buildPartial() {
+        com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper result = new com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1026,16 +1238,16 @@ public final class RemoteInvocationProtoc {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult) {
-          return mergeFrom((com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult)other);
+        if (other instanceof com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper) {
+          return mergeFrom((com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult other) {
-        if (other == com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper other) {
+        if (other == com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper.getDefaultInstance()) return this;
         if (other.hasClassName()) {
           bitField0_ |= 0x00000001;
           className_ = other.className_;
@@ -1056,11 +1268,11 @@ public final class RemoteInvocationProtoc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult parsedMessage = null;
+        com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.playtika.remoting.protobuf.RemoteInvocationProtoc.InvocationResult) e.getUnfinishedMessage();
+          parsedMessage = (com.playtika.remoting.protobuf.RemoteInvocationProtoc.MessageWrapper) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -1181,15 +1393,15 @@ public final class RemoteInvocationProtoc {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:protobuf.InvocationResult)
+      // @@protoc_insertion_point(builder_scope:protobuf.MessageWrapper)
     }
 
     static {
-      defaultInstance = new InvocationResult(true);
+      defaultInstance = new MessageWrapper(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:protobuf.InvocationResult)
+    // @@protoc_insertion_point(class_scope:protobuf.MessageWrapper)
   }
 
   private static com.google.protobuf.Descriptors.Descriptor
@@ -1198,10 +1410,10 @@ public final class RemoteInvocationProtoc {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_protobuf_RemoteInvocation_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_protobuf_InvocationResult_descriptor;
+    internal_static_protobuf_MessageWrapper_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_protobuf_InvocationResult_fieldAccessorTable;
+      internal_static_protobuf_MessageWrapper_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1211,11 +1423,12 @@ public final class RemoteInvocationProtoc {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\027RemoteInvocation.protoc\022\010protobuf\"5\n\020R" +
-      "emoteInvocation\022\016\n\006method\030\001 \002(\t\022\021\n\targum" +
-      "ents\030\002 \003(\014\"4\n\020InvocationResult\022\022\n\nclass_" +
-      "name\030\001 \001(\t\022\014\n\004data\030\002 \001(\014B#\n\036com.playtika" +
-      ".remoting.protobuf\210\001\001"
+      "\n\027RemoteInvocation.protoc\022\010protobuf\"N\n\020R" +
+      "emoteInvocation\022\016\n\006method\030\001 \002(\t\022*\n\010argum" +
+      "ent\030\002 \003(\0132\030.protobuf.MessageWrapper\"2\n\016M" +
+      "essageWrapper\022\022\n\nclass_name\030\001 \001(\t\022\014\n\004dat" +
+      "a\030\002 \001(\014B#\n\036com.playtika.remoting.protobu" +
+      "f\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1227,12 +1440,12 @@ public final class RemoteInvocationProtoc {
           internal_static_protobuf_RemoteInvocation_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_protobuf_RemoteInvocation_descriptor,
-              new java.lang.String[] { "Method", "Arguments", });
-          internal_static_protobuf_InvocationResult_descriptor =
+              new java.lang.String[] { "Method", "Argument", });
+          internal_static_protobuf_MessageWrapper_descriptor =
             getDescriptor().getMessageTypes().get(1);
-          internal_static_protobuf_InvocationResult_fieldAccessorTable = new
+          internal_static_protobuf_MessageWrapper_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_protobuf_InvocationResult_descriptor,
+              internal_static_protobuf_MessageWrapper_descriptor,
               new java.lang.String[] { "ClassName", "Data", });
           return null;
         }
