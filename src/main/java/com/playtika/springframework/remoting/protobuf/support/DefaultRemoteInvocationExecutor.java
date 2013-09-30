@@ -55,7 +55,7 @@ public class DefaultRemoteInvocationExecutor implements
 
 			MessageWithClass msgWithClass = messageUnwrapper
 					.fromWrapper(invocation.getArgument(index), false);
-			types[index] = msgWithClass.getClass();
+			types[index] = msgWithClass.getMessageClass();
 			arguments[index] = msgWithClass.getMessage();
 		}
 	}
